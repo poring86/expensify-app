@@ -5,8 +5,7 @@ module.exports = (env) => {
   const isProduction = env === 'production';
   const CSSExtract = new ExtractTextPlugin('styles.css');
 
-  console.log('env', env);
-  return{
+  return {
     entry: './src/app.js',
     output: {
       path: path.join(__dirname, 'public'),
@@ -33,7 +32,6 @@ module.exports = (env) => {
                 sourceMap: true
               }
             }
-            'sass-loader'
           ]
         })
       }]
@@ -41,7 +39,7 @@ module.exports = (env) => {
     plugins: [
       CSSExtract
     ],
-    devtool: isProduction ?'source-map' : 'inline-source-map',
+    devtool: isProduction ? 'source-map' : 'inline-source-map',
     devServer: {
       contentBase: path.join(__dirname, 'public'),
       historyApiFallback: true
