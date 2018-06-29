@@ -38,6 +38,22 @@
 // const address = ['1299 S Juniper Street', 'Philadelphia', 'Pennsylvania', '19147'];
 // const [, city, state = 'New York'] = address;
 // console.log(`You are in ${city} ${state}.`);
+export const startSetExpenses = () => {
+  return (dispatch) => {
+    return database.ref('expenses').once('value').then((snapshot) => {
+      const expenses = [];
+
+      snapshot.forEach((childSnapshot) => {
+        expenses.push({
+          id: childSnapshot.key,
+          ...childSnapshot.val()
+        });
+      });
+
+      dispatch(setExpenses(expenses));
+    });
+  };
+};
 
 const item = ['Coffee (iced)', '$3.00', '$3.50', '$3.75'];
 const [itemName, , mediumPrice] = item;
